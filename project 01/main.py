@@ -28,8 +28,8 @@ seed(1)
 tf.random.set_seed(1)
 
 # 設定相關引數
-n_timestamp  = 40    # 時間戳
-n_epochs     = 20    # 訓練輪數
+n_timestamp  = 40    # 時間
+n_epochs     = 20    # 訓練數
 # ====================================
 #      選擇模型：
 #            1: 單層 LSTM
@@ -48,7 +48,7 @@ print(data.head())
 training_set = data.iloc[300:2452, 4:5].values
 test_set     = data.iloc[0:300, 4:5].values
 
-#將資料歸一化，范圍是0到1
+#將資料歸一化，範圍是0到1
 sc  = MinMaxScaler(feature_range=(0, 1))
 training_set_scaled = sc.fit_transform(training_set)
 testing_set_scaled  = sc.transform(test_set)
@@ -119,8 +119,8 @@ plt.legend()
 plt.show()
 
 predicted_stock_price = model.predict(X_test)                        # 測驗集輸入模型進行預測
-predicted_stock_price = sc.inverse_transform(predicted_stock_price)  # 對預測資料還原---從（0，1）反歸一化到原始范圍
-real_stock_price      = sc.inverse_transform(y_test)# 對真實資料還原---從（0，1）反歸一化到原始范圍
+predicted_stock_price = sc.inverse_transform(predicted_stock_price)  # 對預測資料還原---從（0，1）反歸一化到原始範圍
+real_stock_price      = sc.inverse_transform(y_test)# 對真實資料還原---從（0，1）反歸一化到原始範圍
 
 # 畫出真實資料和預測資料的對比曲線
 plt.plot(real_stock_price, color='red', label='Stock Price')
